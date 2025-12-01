@@ -50,16 +50,16 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $bd = "bdaulas";
+$host = getenv("DB_HOST");
+$user = getenv("DB_USER");
+$pass = getenv("DB_PASS");
+$db   = getenv("DB_NAME");
 
-    $conexao_bd = new mysqli($servidor, $usuario, $senha, $bd);
+$conn = new mysqli($host, $user, $pass, $db);
 
-    if ($conexao_bd->connect_error) {
-        die("<div class='alert alert-danger'>Falha na conexão: " . $conexao_bd->connect_error . "</div>");
-    }
+if ($conn->connect_error) {
+    die("Erro de conexão: " . $conn->connect_error);
+}
 
     $profsigla   = $_POST['profsigla'];
     $siglacurso  = $_POST['siglacurso'];
