@@ -1,4 +1,4 @@
-name: sweproject
+name: Deploy to Fly.io
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -14,16 +15,18 @@ jobs:
       - name: Install flyctl
         run: |
           curl -L https://fly.io/install.sh | sh
-          echo "::add-path::${HOME}/.fly/bin"
+          export PATH="${HOME}/.fly/bin:${PATH}"
 
       - name: Authenticate flyctl
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
-          ~/.fly/bin/flyctl auth token $FLY_API_TOKEN
+          export PATH="${HOME}/.fly/bin:${PATH}"
+          flyctl auth login --access-token $FLY_API_TOKEN
 
       - name: Deploy to Fly
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
-          ~/.fly/bin/flyctl deploy --config fly.toml --remote-only
+          export PATH="${HOME}/.fly/bin:${PATH}"
+          flyctl deploy --config fly.toml --remote-only
