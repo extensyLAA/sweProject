@@ -8,9 +8,9 @@ primary_region = "gru"
 [env]
   DB_HOST = "meu-mysql.internal"
   DB_USER = "root"
-  DB_PASS = "minhasenha"
-  DB_NAME = "nomedobanco"
-
+  DB_PASS = ""
+  DB_NAME = "bdaulas"
+  
 [[services]]
   internal_port = 80
   protocol = "tcp"
