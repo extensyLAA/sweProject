@@ -1,0 +1,20 @@
+app = "meu-site-php"      # substitua pelo nome real do seu app Fly (ou deixamos assim e você cria com esse nome)
+
+primary_region = "gru"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  DB_HOST = "meu-mysql.internal"
+  DB_USER = "root"
+  DB_PASS = "minhasenha"
+  DB_NAME = "nomedobanco"
+
+[[services]]
+  internal_port = 80
+  protocol = "tcp"
+  [[services.ports]]
+    port = 80
+  [[services.ports]]
+    port = 443
