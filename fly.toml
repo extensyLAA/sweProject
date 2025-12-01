@@ -1,4 +1,4 @@
-app = "meu-site-php"      # substitua pelo nome real do seu app Fly (ou deixamos assim e você cria com esse nome)
+app = "sweproject"      # substitua pelo nome real do seu app Fly (ou deixamos assim e você cria com esse nome)
 
 primary_region = "gru"
 
